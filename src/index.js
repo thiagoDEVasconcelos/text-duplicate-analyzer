@@ -10,5 +10,11 @@ fs.readFile(link, 'utf8', (err, data) => {
 
 function verificaPalavrasDuplicadas(texto) {
   const listaPalavras = texto.split(" ");
-  const palavrasDuplicadas = [];
+  const resultado = {};
+
+  listaPalavras.forEach((palavra) => {
+    resultado[palavra] = (resultado[palavra] || 0) + 1;
+  })
+
+  console.log(resultado);
 }
