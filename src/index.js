@@ -1,12 +1,3 @@
-import fs from 'fs';
-
-const caminhoArquivo = process.argv;
-const link = caminhoArquivo[2];
-
-fs.readFile(link, 'utf8', (err, data) => {
-  quebraEmParagrafos(data);
-});
-
 function quebraEmParagrafos (texto) {
   const listaParagrafos = texto.toLowerCase().split("\n");
   verificaPalavrasDuplicadas(listaParagrafos);
@@ -29,3 +20,5 @@ function verificaPalavrasDuplicadas(paragrafos) {
 
   console.log("RESULTADO", resultado);
 }
+
+export { quebraEmParagrafos };
