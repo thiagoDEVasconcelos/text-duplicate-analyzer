@@ -1,6 +1,6 @@
 function quebraEmParagrafos (texto) {
   const listaParagrafos = texto.toLowerCase().split("\n");
-  verificaPalavrasDuplicadas(listaParagrafos);
+  return verificaPalavrasDuplicadas(listaParagrafos);
 }
 
 function limpaPalavras(listaDePalavras) {
@@ -17,8 +17,8 @@ function verificaPalavrasDuplicadas(paragrafos) {
   palavrasLimpas.forEach((palavra) => {
     resultado[palavra] = (resultado[palavra] || 0) + 1;
   })
-
   console.log("RESULTADO", resultado);
+  return resultado;
 }
 
 export { quebraEmParagrafos };
