@@ -1,24 +1,28 @@
-function quebraEmParagrafos (texto) {
-  const listaParagrafos = texto.toLowerCase().split("\n");
-  return verificaPalavrasDuplicadas(listaParagrafos);
-}
-
-function limpaPalavras(listaDePalavras) {
-  return listaDePalavras.map((palavra) => {
-    return palavra.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()']/g, '');
-  });
-}
-
-function verificaPalavrasDuplicadas(paragrafos) {
-  const listaPalavras = paragrafos.join(" ").split(" ");
-  const palavrasLimpas = limpaPalavras(listaPalavras).filter((palavra) => palavra !== "");
-  const resultado = {};
-
-  palavrasLimpas.forEach((palavra) => {
-    resultado[palavra] = (resultado[palavra] || 0) + 1;
+export function contaPalavras(texto) {
+  const paragrafos = extraiParagrafos(texto)
+  const contagem = paragrafos.flatMap((paragrafo) => {
+    if (!paragrafo) return [];
+    return verificaPalavrasDuplicadas(paragrafo);
   })
-  console.log("RESULTADO", resultado);
+  return contagem;
+}
+
+function extraiParagrafos(texto) {
+  return texto.toLowerCase().split('\n');
+}
+
+function limpaPalavras(palavra) {
+  return palavra.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '');
+}
+
+function verificaPalavrasDuplicadas(texto) {
+  const listaPalavras = texto.split(' ');
+  const resultado = {};
+  listaPalavras.forEach(palavra => {
+    if (palavra.length >= 3) {
+      const palavraLimpa = limpaPalavras(palavra);
+      resultado[palavraLimpa] = (resultado[palavraLimpa] || 0) + 1
+    }
+  })
   return resultado;
 }
-
-export { quebraEmParagrafos };
